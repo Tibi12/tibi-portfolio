@@ -78,7 +78,7 @@ export default function Portfolio() {
     <div className="min-h-screen bg-zinc-950 text-zinc-100">
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_top_left,rgba(34,197,94,0.22),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(59,130,246,0.18),transparent_30%)]" />
 
-      <header className="relative z-10  flex  items-center justify-between px-6 py-6">
+      <header className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-6 py-6">
         <a href="#home" className="text-xl font-bold tracking-tight">Tibi Sunny</a>
         <nav className="hidden gap-8 text-sm text-zinc-300 md:flex">
           <a href="#about" className="hover:text-white">About</a>
@@ -92,7 +92,7 @@ export default function Portfolio() {
       </header>
 
       <main className="relative z-10">
-        <section id="home" className=" grid items-center gap-10 px-6 py-20 md:grid-cols-[1.1fr_0.9fr] md:py-28">
+        <section id="home" className="mx-auto grid max-w-7xl items-center gap-10 px-6 py-20 md:grid-cols-[1.1fr_0.9fr] md:py-28">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
             <p className="mb-4 inline-flex rounded-full border border-zinc-800 bg-zinc-900/70 px-4 py-2 text-sm text-emerald-300">
               Backend / Full Stack Software Engineer · AWS Certified Developer
@@ -139,7 +139,7 @@ export default function Portfolio() {
           </motion.div>
         </section>
 
-        <section id="about" className=" px-6 py-16">
+        <section id="about" className="mx-auto max-w-7xl px-6 py-16">
           <div className="mb-10 max-w-3xl">
             <p className="text-sm uppercase tracking-[0.25em] text-emerald-300">What I do</p>
             <h2 className="mt-3 text-4xl font-bold">I design and build reliable software systems.</h2>
@@ -157,7 +157,7 @@ export default function Portfolio() {
           </div>
         </section>
 
-        <section className="px-6 py-16">
+        <section className="mx-auto max-w-7xl px-6 py-16">
           <div className="mb-8 flex items-end justify-between gap-6">
             <div>
               <p className="text-sm uppercase tracking-[0.25em] text-emerald-300">Skills</p>
@@ -173,7 +173,7 @@ export default function Portfolio() {
           </div>
         </section>
 
-        <section id="experience" className=" px-6 py-16">
+        <section id="experience" className="mx-auto max-w-7xl px-6 py-16">
           <div className="mb-10">
             <p className="text-sm uppercase tracking-[0.25em] text-emerald-300">Career</p>
             <h2 className="mt-3 text-4xl font-bold">Professional Experience</h2>
@@ -200,7 +200,7 @@ export default function Portfolio() {
           </div>
         </section>
 
-        <section id="projects" className="px-6 py-16">
+        <section id="projects" className="mx-auto max-w-7xl px-6 py-16">
           <div className="mb-10">
             <p className="text-sm uppercase tracking-[0.25em] text-emerald-300">Selected Work</p>
             <h2 className="mt-3 text-4xl font-bold">Projects</h2>
@@ -226,7 +226,7 @@ export default function Portfolio() {
           </div>
         </section>
 
-        <section id="contact" className=" px-6 py-20">
+        <section id="contact" className="mx-auto max-w-7xl px-6 py-20">
           <Card className="rounded-[2rem] border-zinc-800 bg-zinc-900/80">
             <CardContent className="grid gap-8 p-8 md:grid-cols-[1fr_auto] md:items-center md:p-12">
               <div>
