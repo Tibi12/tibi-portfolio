@@ -1,272 +1,141 @@
-import React from "react";
+import { ArrowUpRight, Award, Download } from "lucide-react";
 import { motion } from "framer-motion";
+import heroImage from "./assets/hero.png";
+import ExperienceCard from "./components/ExperienceCard";
+import ProjectCard from "./components/ProjectCard";
+import SkillGroups from "./components/SkillGroups";
+import { contactLinks, education, experience, heroMeta, profile, projects, services, skillGroups } from "./data/portfolioData";
 
+function ServiceCard({ service }) {
+  const Icon = service.icon;
 
-
-const skills = [
-  "JavaScript", "TypeScript", "Node.js", "Express.js", "React", "Angular", "Python", "Java", "C#", ".NET",
-  "Spring Boot", "REST APIs", "Microservices", "Event-Driven Architecture", "AWS EC2", "AWS ECS", "AWS Lambda",
-  "Amazon S3", "Amazon RDS", "API Gateway", "CloudWatch", "Step Functions", "SQS", "SNS", "Kafka", "Docker",
-  "Kubernetes", "Jenkins", "GitLab CI/CD", "SonarQube", "Datadog", "MySQL", "MongoDB", "DynamoDB", "Redis",
-  "Jest", "Mocha", "Supertest", "Git"
-];
-function Card({ children, className = "" }) {
-  return <div className={className}>{children}</div>;
-}
-
-function CardContent({ children, className = "" }) {
-  return <div className={className}>{children}</div>;
-}
-
-function Button({ children, className = "", variant, size, asChild }) {
-  return children;
-}
-
-const projects = [
-  {
-    title: "SprayzApp — Mobile Vehicle Washing Platform",
-    description: "Built Node.js backend APIs for service booking, payments, scheduling workflows, QuickBooks invoicing, and PWA offline support.",
-    tags: ["Node.js", "REST APIs", "Payments", "QuickBooks", "PWA"]
-  },
-  {
-    title: "SSENSE — E-Commerce Platform",
-    description: "Developed microservices for inventory and order processing, migrated production workloads to AWS, and applied DDD and TDD practices.",
-    tags: ["Microservices", "AWS", "DDD", "TDD"]
-  },
-  {
-    title: "Kokos.ai — AI Learning Management System",
-    description: "Implemented LMS backend features using Node.js, Open edX, MySQL, WebXR coding environments, and Google Teachable Machine integrations.",
-    tags: ["Node.js", "Open edX", "MySQL", "AI"]
-  },
-  {
-    title: "NLP-Based Inference on Drug Abuse News Data",
-    description: "Built an NLP pipeline using Google BERT, Hugging Face Transformers, NER, text classification, prompt engineering, and RAG concepts.",
-    tags: ["BERT", "NLP", "NER", "LLM"]
-  }
-];
-
-const experience = [
-  {
-    role: "Software Engineer — Backend / Full Stack Developer",
-    company: "ZDistance Lab, India",
-    period: "Oct 2020 — Dec 2023",
-    points: [
-      "Designed scalable backend services and RESTful APIs using Node.js, Express.js, and TypeScript.",
-      "Built distributed, event-driven systems with AWS SQS, SNS, Kafka, and Step Functions, focusing on reliability, scalability, and fault tolerance.",
-      "Deployed cloud-native applications using AWS EC2, ECS, Lambda, S3, RDS, API Gateway, CloudWatch, and Step Functions.",
-      "Implemented observability with structured logging, metrics, CloudWatch dashboards, Datadog monitoring, and production debugging.",
-      "Improved CI/CD workflows using Jenkins, GitLab CI/CD, SonarQube, Jest, Mocha, Supertest, and automated deployments.",
-      "Managed MySQL, DynamoDB, and Redis caching, and contributed to architecture decisions, design documents, API documentation, and deployment runbooks."
-    ]
-  },
-  {
-    role: "Backend Developer — Project Experience",
-    company: "Briticana Solutions, Ireland",
-    period: "2025 — 2026",
-    points: [
-      "Developed backend microservices using Node.js and Python.",
-      "Designed secure APIs with authentication, authorization, and access control.",
-      "Containerized services using Docker and applied Kubernetes fundamentals for reliable development and deployment environments.",
-      "Collaborated in agile teams through sprint planning, peer code reviews, technical documentation, and production deployments."
-    ]
-  }
-];
-
-const services = [
-  { icon: "⚙️", title: "Backend Engineering", text: "Scalable APIs, microservices, authentication, system design, and production-ready backend services." },
-  { icon: "☁️", title: "Cloud & DevOps", text: "AWS EC2, ECS, Lambda, S3, RDS, API Gateway, CloudWatch, Step Functions, CI/CD, Docker, and production debugging." },
-  { icon: "💻", title: "Full Stack Development", text: "Modern React and Angular frontends integrated with secure backend systems." },
-  { icon: "🤖", title: "AI/NLP Systems", text: "BERT, Hugging Face, NER, text classification, prompt engineering, and RAG-based workflows." }
-];
-
-export default function Portfolio() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100">
-      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_top_left,rgba(34,197,94,0.22),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(59,130,246,0.18),transparent_30%)]" />
+    <article className="service-card rounded-3xl border-zinc-800 bg-zinc-900/70">
+      <div className="p-6">
+        <Icon className="service-icon mb-5" size={25} strokeWidth={1.5} aria-hidden="true" />
+        <h3 className="text-xl font-semibold text-white">{service.title}</h3>
+        <p className="mt-3 text-sm leading-6 text-zinc-400">{service.text}</p>
+      </div>
+    </article>
+  );
+}
 
-      <header className="relative z-10  flex w-full items-center justify-between px-6 py-6">
-        <a href="#home" className="text-xl font-bold tracking-tight">Tibi Sunny</a>
-        <nav className="hidden gap-8 text-sm text-zinc-300 md:flex">
-          <a href="#about" className="hover:text-white">About</a>
-          <a href="#experience" className="hover:text-white">Experience</a>
-          <a href="#projects" className="hover:text-white">Projects</a>
-          <a href="#contact" className="hover:text-white">Contact</a>
-        </nav>
-        <Button asChild className="rounded-2xl">
-          <a href="mailto:tibisunny42@gmail.com">Hire Me</a>
-        </Button>
-      </header>
-
-      <main className="relative z-10">
-        <section id="home" className=" grid w-full items-center gap-10 px-6 py-20 md:grid-cols-[1.1fr_0.9fr] md:py-28">
-          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-            <p className="mb-4 inline-flex rounded-full border border-zinc-800 bg-zinc-900/70 px-4 py-2 text-sm text-emerald-300">
-              Backend / Full Stack Software Engineer · AWS Certified Developer
-            </p>
-            <h1 className="max-w-4xl text-5xl font-bold leading-tight tracking-tight md:text-7xl">
-              Building scalable web systems, cloud APIs, and AI-powered products.
-            </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-300">
-              I’m a Dublin-based Backend / Full Stack Software Engineer with 3+ years of experience building scalable backend services, distributed web applications, REST APIs, microservices, and event-driven systems using Node.js, TypeScript, React, Python, Java, and AWS. I’m AWS Certified Developer – Associate and currently on a Stamp 1G visa under Ireland’s Third Level Graduate Scheme.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Button asChild size="lg" className="rounded-2xl">
-                <a href="#projects">View Projects →</a>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="rounded-2xl border-zinc-700 bg-transparent text-white hover:bg-zinc-900">
-                <a href="mailto:tibisunny42@gmail.com">Contact Me</a>
-              </Button>
+function EducationSection() {
+  return (
+    <section id="education" className="content-section w-full px-6 py-20 lg:px-12">
+      <div className="section-heading mb-10">
+        <p className="eyebrow"><span /> Education & credentials</p>
+        <h2 className="mt-3 text-4xl font-bold">The foundation behind the work.</h2>
+      </div>
+      <div className="education-grid grid gap-5 lg:grid-cols-[1.4fr_0.6fr]">
+        <div className="timeline">
+          {education.map((item) => (
+            <div className="timeline-item" key={item.qualification}>
+              <span className="timeline-marker" />
+              <div><p className="timeline-period">{item.period}</p><h3>{item.qualification}</h3><p>{item.institution}</p></div>
             </div>
-            <div className="mt-8 flex flex-wrap gap-5 text-sm text-zinc-400">
-              <span className="flex items-center gap-2">📍 Santry, Dublin</span>
-              <span className="flex items-center gap-2">✉️ tibisunny42@gmail.com</span>
-              <span className="flex items-center gap-2">📞 +353 892585127</span>
-            </div>
-          </motion.div>
+          ))}
+        </div>
+        <div className="credential-card">
+          <Award size={24} aria-hidden="true" />
+          <p className="eyebrow">Certification</p>
+          <h3>AWS Certified Developer — Associate</h3>
+          <p>Cloud-native application development, deployment, and AWS service integration.</p>
+          <a className="credential-link" href={profile.certification} target="_blank" rel="noopener noreferrer">Verify credential <ArrowUpRight size={15} aria-hidden="true" /></a>
+        </div>
+      </div>
+    </section>
+  );
+}
 
-          <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.7, delay: 0.15 }}>
-            <Card className="rounded-[2rem] border-zinc-800 bg-zinc-900/70 shadow-2xl backdrop-blur">
-              <CardContent className="p-8">
-                <div className="mb-8 flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-zinc-400">Current focus</p>
-                    <h2 className="mt-1 text-2xl font-semibold text-white">Cloud, APIs & AI Engineering</h2>
-                  </div>
-                  <span className="text-4xl">🏆</span>
-                </div>
-                <div className="grid gap-4">
-                  <Metric label="Experience" value="3+ Years" />
-                  <Metric label="Cloud" value="EC2 · ECS · Lambda · S3 · RDS · API Gateway" />
-                  <Metric label="Messaging" value="SQS · SNS · Kafka · Step Functions" />
-                  <Metric label="Observability" value="CloudWatch · Datadog · Logging · Metrics" />
-                  <Metric label="Databases" value="MySQL · MongoDB · DynamoDB · Redis" />
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        </section>
-
-        <section id="about" className=" w-full px-6 py-16">
-          <div className="mb-10 max-w-3xl">
-            <p className="text-sm uppercase tracking-[0.25em] text-emerald-300">What I do</p>
-            <h2 className="mt-3 text-4xl font-bold">I design and build reliable software systems.</h2>
-          </div>
-          <div className="grid gap-5 md:grid-cols-4">
-            {services.map((item) => (
-              <Card key={item.title} className="rounded-3xl border-zinc-800 bg-zinc-900/70">
-                <CardContent className="p-6">
-                  <span className="mb-5 block text-3xl">{item.icon}</span>
-                  <h3 className="text-xl font-semibold text-white">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-zinc-400">{item.text}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        <section className=" w-full px-6 py-16">
-          <div className="mb-8 flex items-end justify-between gap-6">
-            <div>
-              <p className="text-sm uppercase tracking-[0.25em] text-emerald-300">Skills</p>
-              <h2 className="mt-3 text-4xl font-bold">Tech Stack</h2>
-            </div>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            {skills.map((skill) => (
-              <span key={skill} className="rounded-full border border-zinc-800 bg-zinc-900/70 px-4 py-2 text-sm text-zinc-300">
-                {skill}
-              </span>
-            ))}
-          </div>
-        </section>
-
-        <section id="experience" className=" w-full px-6 py-16">
-          <div className="mb-10">
-            <p className="text-sm uppercase tracking-[0.25em] text-emerald-300">Career</p>
-            <h2 className="mt-3 text-4xl font-bold">Professional Experience</h2>
-          </div>
-          <div className="grid gap-6">
-            {experience.map((job) => (
-              <Card key={job.role} className="rounded-3xl border-zinc-800 bg-zinc-900/70">
-                <CardContent className="p-7">
-                  <div className="flex flex-col gap-2 md:flex-row md:items-start md:justify-between">
-                    <div>
-                      <h3 className="text-2xl font-semibold text-white">{job.role}</h3>
-                      <p className="mt-1 text-zinc-400">{job.company}</p>
-                    </div>
-                    <p className="rounded-full bg-zinc-800 px-4 py-2 text-sm text-zinc-300">{job.period}</p>
-                  </div>
-                  <ul className="mt-6 grid gap-3 text-zinc-300 md:grid-cols-2">
-                    {job.points.map((point) => (
-                      <li key={point} className="leading-7">• {point}</li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        <section id="projects" className=" w-full px-6 py-16">
-          <div className="mb-10">
-            <p className="text-sm uppercase tracking-[0.25em] text-emerald-300">Selected Work</p>
-            <h2 className="mt-3 text-4xl font-bold">Projects</h2>
-          </div>
-          <div className="grid gap-6 md:grid-cols-2">
-            {projects.map((project) => (
-              <Card key={project.title} className="group rounded-3xl border-zinc-800 bg-zinc-900/70 transition hover:-translate-y-1 hover:bg-zinc-900">
-                <CardContent className="p-7">
-                  <div className="mb-6 flex items-start justify-between gap-4">
-                    <span className="text-3xl">🗄️</span>
-                    <span className="text-zinc-500 transition group-hover:text-white">↗</span>
-                  </div>
-                  <h3 className="text-2xl font-semibold text-white">{project.title}</h3>
-                  <p className="mt-4 leading-7 text-zinc-400">{project.description}</p>
-                  <div className="mt-6 flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <span key={tag} className="rounded-full bg-zinc-800 px-3 py-1 text-xs text-zinc-300">{tag}</span>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        <section id="contact" className=" w-full px-6 py-20">
-          <Card className="rounded-[2rem] border-zinc-800 bg-zinc-900/80">
-            <CardContent className="grid gap-8 p-8 md:grid-cols-[1fr_auto] md:items-center md:p-12">
-              <div>
-                <p className="text-sm uppercase tracking-[0.25em] text-emerald-300">Contact</p>
-                <h2 className="mt-3 text-4xl font-bold text-white">Let’s build something scalable.</h2>
-                <p className="mt-4 max-w-2xl text-zinc-400">
-                  I’m open to backend, full stack, cloud, and AI-focused engineering opportunities in Ireland and remote teams.
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-3">
-                <Button asChild className="rounded-2xl">
-                  <a href="mailto:tibisunny42@gmail.com">✉️ Email</a>
-                </Button>
-                <Button asChild variant="outline" className="rounded-2xl border-zinc-700 bg-transparent text-white hover:bg-zinc-900">
-                  <a href="https://github.com/TibiSunny" target="_blank" rel="noreferrer">GitHub</a>
-                </Button>
-                <Button asChild variant="outline" className="rounded-2xl border-zinc-700 bg-transparent text-white hover:bg-zinc-900">
-                  <a href="https://linkedin.com/in/tibisunny" target="_blank" rel="noreferrer">LinkedIn</a>
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        </section>
-      </main>
+function ContactLinks() {
+  return (
+    <div className="flex flex-wrap gap-3">
+      {contactLinks.map(({ label, href, icon: Icon }) => (
+        <a key={label} href={href} className={label === "Email" ? "primary-button" : "secondary-button"} target={label === "Email" ? undefined : "_blank"} rel={label === "Email" ? undefined : "noopener noreferrer"} aria-label={`Open ${label}`}>
+          <Icon size={16} aria-hidden="true" /> {label}
+        </a>
+      ))}
     </div>
   );
 }
 
-function Metric({ label, value }) {
+export default function Portfolio() {
   return (
-    <div className="rounded-2xl border border-zinc-800 bg-zinc-950/70 p-4">
-      <p className="text-sm text-zinc-500">{label}</p>
-      <p className="mt-1 font-medium text-zinc-100">{value}</p>
+    <div className="portfolio-shell min-h-screen text-zinc-100">
+      <div className="ambient-grid pointer-events-none fixed inset-0" />
+      <header className="site-header relative z-10 flex w-full items-center justify-between px-6 py-6 lg:px-12">
+        <a href="#home" className="brand-mark"><span className="brand-dot" />{profile.name}</a>
+        <nav className="hidden gap-8 text-sm text-zinc-300 md:flex" aria-label="Primary navigation">
+          <a href="#about" className="hover:text-white">About</a>
+          <a href="#skills" className="hover:text-white">Stack</a>
+          <a href="#experience" className="hover:text-white">Experience</a>
+          <a href="#projects" className="hover:text-white">Projects</a>
+          <a href="#contact" className="hover:text-white">Contact</a>
+        </nav>
+        <a href={`mailto:${profile.email}?subject=Portfolio%20Enquiry`} className="header-cta">Let’s talk <ArrowUpRight size={16} aria-hidden="true" /></a>
+      </header>
+
+      <main className="relative z-10">
+        <section id="home" className="hero-section grid w-full items-center gap-12 px-6 py-16 md:py-24 lg:grid-cols-[1.1fr_0.9fr] lg:px-12">
+          <motion.div className="hero-copy" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
+            <p className="eyebrow"><span /> Backend · Cloud · Full Stack</p>
+            <h1 className="max-w-4xl text-5xl font-bold leading-tight tracking-tight md:text-7xl">I build the systems behind products people rely on.</h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-300">Backend / Full Stack Software Engineer with 3+ years of experience designing scalable APIs, distributed applications, event-driven systems, and cloud-native products with Node.js, TypeScript, React, Python, Java, and AWS.</p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <a href="#projects" className="primary-button">Explore my work <ArrowUpRight size={17} aria-hidden="true" /></a>
+              <a href={`mailto:${profile.email}?subject=CV%20Request`} className="secondary-button"><Download size={16} aria-hidden="true" /> Request CV</a>
+            </div>
+            <div className="hero-meta mt-8 flex flex-wrap gap-5 text-sm text-zinc-400">
+              {heroMeta.map(({ label, icon: Icon }) => <span key={label}><Icon size={15} aria-hidden="true" /> {label}</span>)}
+              <span><span className="status-dot" /> Open to opportunities</span>
+            </div>
+          </motion.div>
+
+          <motion.div className="system-panel" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.7, delay: 0.15 }}>
+            <div className="panel-topline"><span>ARCHITECTURE / 001</span><span className="panel-live">● LIVE</span></div>
+            <div className="system-visual">
+              <img src={heroImage} alt="Abstract layered system architecture" />
+              <div className="visual-label label-api">API GATEWAY</div><div className="visual-label label-events">EVENTS / QUEUES</div><div className="visual-label label-data">DATA LAYER</div>
+              <div className="visual-line line-one" /><div className="visual-line line-two" />
+            </div>
+            <div className="panel-footer"><span>Node.js · AWS · Datadog</span><span>Reliable by design</span></div>
+          </motion.div>
+        </section>
+
+        <section className="proof-strip px-6 lg:px-12" aria-label="Career highlights">
+          <div><strong>3+</strong><span>years engineering</span></div><div><strong>8</strong><span>AWS services in practice</span></div><div><strong>5</strong><span>featured projects</span></div><div><strong>1</strong><span>AWS certification</span></div>
+        </section>
+
+        <section id="about" className="content-section w-full px-6 py-20 lg:px-12">
+          <div className="mb-10 max-w-3xl"><p className="eyebrow"><span /> What I do</p><h2 className="mt-3 text-4xl font-bold">I design and build reliable software systems.</h2></div>
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">{services.map((service) => <ServiceCard key={service.title} service={service} />)}</div>
+        </section>
+
+        <section id="skills" className="content-section skills-section w-full px-6 py-20 lg:px-12">
+          <div className="mb-8"><p className="eyebrow"><span /> Skills</p><h2 className="mt-3 text-4xl font-bold">A stack built for production.</h2></div>
+          <SkillGroups groups={skillGroups} />
+        </section>
+
+        <EducationSection />
+
+        <section id="experience" className="content-section w-full px-6 py-20 lg:px-12">
+          <div className="mb-10"><p className="eyebrow"><span /> Career</p><h2 className="mt-3 text-4xl font-bold">Professional experience.</h2></div>
+          <div className="grid gap-6">{experience.map((job) => <ExperienceCard key={job.id} job={job} />)}</div>
+        </section>
+
+        <section id="projects" className="content-section w-full px-6 py-20 lg:px-12">
+          <div className="mb-10"><p className="eyebrow"><span /> Selected work</p><h2 className="mt-3 text-4xl font-bold">Projects with a point of view.</h2></div>
+          <div className="grid gap-6 md:grid-cols-2">{projects.map((project, index) => <ProjectCard key={project.id} project={project} index={index} />)}</div>
+        </section>
+
+        <section id="contact" className="content-section contact-section w-full px-6 py-20 lg:px-12">
+          <div className="grid gap-8 rounded-[2rem] p-8 md:grid-cols-[1fr_auto] md:items-center md:p-12">
+            <div><p className="eyebrow"><span /> Contact</p><h2 className="mt-3 text-4xl font-bold text-white">Let’s build something scalable.</h2><p className="mt-4 max-w-2xl text-zinc-400">I’m open to backend, full stack, cloud, and AI-focused engineering opportunities in Ireland and remote teams.</p></div>
+            <ContactLinks />
+          </div>
+        </section>
+      </main>
     </div>
   );
 }
