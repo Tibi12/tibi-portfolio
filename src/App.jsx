@@ -5,7 +5,10 @@ import { motion } from "framer-motion";
 
 const skills = [
   "JavaScript", "TypeScript", "Node.js", "Express.js", "React", "Angular", "Python", "Java", "C#", ".NET",
-  "Spring Boot", "REST APIs", "Microservices", "AWS", "Docker", "CI/CD", "MySQL", "MongoDB", "DynamoDB", "Redis"
+  "Spring Boot", "REST APIs", "Microservices", "Event-Driven Architecture", "AWS EC2", "AWS ECS", "AWS Lambda",
+  "Amazon S3", "Amazon RDS", "API Gateway", "CloudWatch", "Step Functions", "SQS", "SNS", "Kafka", "Docker",
+  "Kubernetes", "Jenkins", "GitLab CI/CD", "SonarQube", "Datadog", "MySQL", "MongoDB", "DynamoDB", "Redis",
+  "Jest", "Mocha", "Supertest", "Git"
 ];
 function Card({ children, className = "" }) {
   return <div className={className}>{children}</div>;
@@ -22,22 +25,22 @@ function Button({ children, className = "", variant, size, asChild }) {
 const projects = [
   {
     title: "SprayzApp — Mobile Vehicle Washing Platform",
-    description: "Built backend APIs for booking, payments, scheduling workflows, QuickBooks invoicing, and PWA offline support.",
-    tags: ["Node.js", "APIs", "Payments", "PWA"]
+    description: "Built Node.js backend APIs for service booking, payments, scheduling workflows, QuickBooks invoicing, and PWA offline support.",
+    tags: ["Node.js", "REST APIs", "Payments", "QuickBooks", "PWA"]
   },
   {
     title: "SSENSE — E-Commerce Platform",
-    description: "Developed inventory and order processing services using microservices, AWS migration, DDD, and TDD practices.",
+    description: "Developed microservices for inventory and order processing, migrated production workloads to AWS, and applied DDD and TDD practices.",
     tags: ["Microservices", "AWS", "DDD", "TDD"]
   },
   {
     title: "Kokos.ai — AI Learning Management System",
-    description: "Implemented LMS backend features using Node.js, Open edX, MySQL, WebXR coding environments, and ML workflow integrations.",
+    description: "Implemented LMS backend features using Node.js, Open edX, MySQL, WebXR coding environments, and Google Teachable Machine integrations.",
     tags: ["Node.js", "Open edX", "MySQL", "AI"]
   },
   {
     title: "NLP-Based Inference on Drug Abuse News Data",
-    description: "Built an NLP pipeline using BERT, Hugging Face Transformers, NER, text classification, prompt engineering, and RAG concepts.",
+    description: "Built an NLP pipeline using Google BERT, Hugging Face Transformers, NER, text classification, prompt engineering, and RAG concepts.",
     tags: ["BERT", "NLP", "NER", "LLM"]
   }
 ];
@@ -49,9 +52,11 @@ const experience = [
     period: "Oct 2020 — Dec 2023",
     points: [
       "Designed scalable backend services and RESTful APIs using Node.js, Express.js, and TypeScript.",
-      "Built distributed systems with reliability, scalability, and fault tolerance in mind.",
-      "Deployed cloud-native applications on AWS Lambda, ECS, S3, RDS, and API Gateway.",
-      "Improved CI/CD workflows using Jenkins, GitLab CI, SonarQube, and automated testing."
+      "Built distributed, event-driven systems with AWS SQS, SNS, Kafka, and Step Functions, focusing on reliability, scalability, and fault tolerance.",
+      "Deployed cloud-native applications using AWS EC2, ECS, Lambda, S3, RDS, API Gateway, CloudWatch, and Step Functions.",
+      "Implemented observability with structured logging, metrics, CloudWatch dashboards, Datadog monitoring, and production debugging.",
+      "Improved CI/CD workflows using Jenkins, GitLab CI/CD, SonarQube, Jest, Mocha, Supertest, and automated deployments.",
+      "Managed MySQL, DynamoDB, and Redis caching, and contributed to architecture decisions, design documents, API documentation, and deployment runbooks."
     ]
   },
   {
@@ -61,14 +66,15 @@ const experience = [
     points: [
       "Developed backend microservices using Node.js and Python.",
       "Designed secure APIs with authentication, authorization, and access control.",
-      "Containerized services using Docker for reliable development and deployment environments."
+      "Containerized services using Docker and applied Kubernetes fundamentals for reliable development and deployment environments.",
+      "Collaborated in agile teams through sprint planning, peer code reviews, technical documentation, and production deployments."
     ]
   }
 ];
 
 const services = [
   { icon: "⚙️", title: "Backend Engineering", text: "Scalable APIs, microservices, authentication, system design, and production-ready backend services." },
-  { icon: "☁️", title: "Cloud & DevOps", text: "AWS deployments, CI/CD pipelines, Docker, monitoring, logging, and production debugging." },
+  { icon: "☁️", title: "Cloud & DevOps", text: "AWS EC2, ECS, Lambda, S3, RDS, API Gateway, CloudWatch, Step Functions, CI/CD, Docker, and production debugging." },
   { icon: "💻", title: "Full Stack Development", text: "Modern React and Angular frontends integrated with secure backend systems." },
   { icon: "🤖", title: "AI/NLP Systems", text: "BERT, Hugging Face, NER, text classification, prompt engineering, and RAG-based workflows." }
 ];
@@ -101,7 +107,7 @@ export default function Portfolio() {
               Building scalable web systems, cloud APIs, and AI-powered products.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-300">
-              I’m a Dublin-based software engineer with 3+ years of experience building backend services, distributed web applications, REST APIs, microservices, and cloud-native systems using Node.js, TypeScript, React, Python, Java, and AWS.
+              I’m a Dublin-based Backend / Full Stack Software Engineer with 3+ years of experience building scalable backend services, distributed web applications, REST APIs, microservices, and event-driven systems using Node.js, TypeScript, React, Python, Java, and AWS. I’m AWS Certified Developer – Associate and currently on a Stamp 1G visa under Ireland’s Third Level Graduate Scheme.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Button asChild size="lg" className="rounded-2xl">
@@ -130,8 +136,9 @@ export default function Portfolio() {
                 </div>
                 <div className="grid gap-4">
                   <Metric label="Experience" value="3+ Years" />
-                  <Metric label="Cloud" value="AWS Lambda · ECS · S3 · RDS" />
-                  <Metric label="Architecture" value="REST APIs · Microservices · Event Driven" />
+                  <Metric label="Cloud" value="EC2 · ECS · Lambda · S3 · RDS · API Gateway" />
+                  <Metric label="Messaging" value="SQS · SNS · Kafka · Step Functions" />
+                  <Metric label="Observability" value="CloudWatch · Datadog · Logging · Metrics" />
                   <Metric label="Databases" value="MySQL · MongoDB · DynamoDB · Redis" />
                 </div>
               </CardContent>
